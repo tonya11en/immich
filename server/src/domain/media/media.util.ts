@@ -22,7 +22,11 @@ class BaseConfig implements VideoCodecSWConfig {
   }
 
   getBaseInputOptions(): string[] {
-    return [];
+    return [
+      `-hwaccel vaapi`,
+      `-hwaccel_device /dev/dri/renderD128`,
+      `-hwaccel_output_format`,
+    ];
   }
 
   getBaseOutputOptions() {
@@ -33,9 +37,6 @@ class BaseConfig implements VideoCodecSWConfig {
       // the file for improved playback speed.
       '-movflags faststart',
       '-fps_mode passthrough',
-      `-hwaccel vaapi`,
-      `-hwaccel_device /dev/dri/renderD128`,
-      `-hwaccel_output_format`,
     ];
   }
 
