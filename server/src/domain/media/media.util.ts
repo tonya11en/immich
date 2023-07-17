@@ -2,7 +2,7 @@ import { SystemConfigFFmpegDto } from '../system-config/dto';
 import { BitrateDistribution, TranscodeOptions, VideoCodecSWConfig, VideoStreamInfo } from './media.repository';
 
 class BaseConfig implements VideoCodecSWConfig {
-  constructor(protected config: SystemConfigFFmpegDto) {}
+  constructor(protected config: SystemConfigFFmpegDto) { }
 
   getOptions(stream: VideoStreamInfo) {
     const options = {
@@ -33,6 +33,9 @@ class BaseConfig implements VideoCodecSWConfig {
       // the file for improved playback speed.
       '-movflags faststart',
       '-fps_mode passthrough',
+      `-hwaccel vaapi`,
+      `-hwaccel_device /dev/dri/renderD128`,
+      `-hwaccel_output_format`,
     ];
   }
 
